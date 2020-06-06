@@ -1,16 +1,9 @@
 <launch>
-  <arg name="map_topic" default="map" />
-  <arg name="mesh_type" default="stl" />
-  <!-- <arg name="export_dir" defaut="$(find map2gazebo)/models/map/meshes/" /> -->
-  <arg name="occupied_thresh" default="1" />
-  <arg name="box_height" default="2.0" />
+  <arg name="params_file" default="$(find map2gazebo)/config/defaults.yaml" />
+  <arg name="export_dir" default="$(find map2gazebo)/models/map/meshes" />
 
   <node name="map2gazebo" pkg="map2gazebo" type="map2gazebo.py" output="screen" >
-    <param name="map_topic" value="$(arg map_topic)" />
-    <param name="mesh_type" value="$(arg mesh_type)" />
-    <!-- <param name="export_dir" value="$(arg export_dir)" /> -->
-    <param name="export_dir" value="$(find map2gazebo)/models/map/meshes/" />
-    <param name="occupied_thresh" value="$(arg occupied_thresh)" />
-    <param name="box_height" value="$(arg box_height)" />
+    <param name="export_dir" value="$(arg export_dir)" />
+    <rosparam command="load" file="$(arg params_file)" />
   </node>
 </launch>
