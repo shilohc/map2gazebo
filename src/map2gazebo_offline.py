@@ -32,7 +32,8 @@ class MapConverter():
         corners = list(np.vstack(contours))
         corners = [c[0] for c in corners]
         mesh = trimesh.util.concatenate(meshes)
-
+        if not self.export_dir.endswith('/'):
+            self.export_dir = self.export_dir + '/'
         file_dir = self.export_dir + map_info['image'].replace('pgm','stl')
         print(f'export file: {file_dir}')
         
