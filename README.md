@@ -50,12 +50,6 @@ directory.  (Let me know, or better submit a PR, if you know of a more elegant
 way to do this!)
 
 ## Installation
-NOTE:
-
-trimesh needs the following soft dependencies to export Collada (.dae) files.
-
-Theoretically you can install these with `pip install trimesh[soft]` but this
-failed for me, so I installed the needed ones myself.
 
 1. Install the python dependencies with pip:
 ```
@@ -74,6 +68,13 @@ git clone https://github.com/H-HChen/map2gazebo.git
 cd ..
 catkin_make
 ```
+NOTE:
+
+trimesh needs the following soft dependencies to export Collada (.dae) files.
+
+Theoretically you can install these with `pip install trimesh[soft]` but this
+failed for me, so I installed the needed ones myself.
+
 
 ## Online conversion
 After you launch SLAM applicatoin and make sure "/map" topic is published.
