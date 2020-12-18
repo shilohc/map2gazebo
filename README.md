@@ -70,10 +70,12 @@ Git clone map2gazebo and build package
 ```
 mkdir -p map2gz_ros1_ws/src
 cd map2gz_ros1_ws/src
-git clone https://github.com/H-HChen/map2gazebo.git
+git clone https://github.com/H-HChen/map2gazebo.git export_dir:=/path/to/export_dir
 cd ..
 catkin_make
 ```
+
+## Online conversion
 After you launch SLAM applicatoin and make sure "/map" topic is published.
 ```
 source devel/setup.bash
@@ -86,5 +88,5 @@ If you want to convert an existing map to stl model.
 
 please modified map_dir and export_dir to directory on your PC.
 ```
-python3 src/map2gazebo/src/map2gazebo_offline.py --map_dir /home/ros/map/mememan.pgm --export_dir /home/ros/
+python3 src/map2gazebo/src/map2gazebo_offline.py --map_dir /path/to/map/mememan.pgm --export_dir /path/to/export_dir
 ```
