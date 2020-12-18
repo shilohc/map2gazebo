@@ -70,7 +70,7 @@ Git clone map2gazebo and build package
 ```
 mkdir -p map2gz_ros1_ws/src
 cd map2gz_ros1_ws/src
-git clone https://github.com/H-HChen/map2gazebo.git export_dir:=/path/to/export_dir
+git clone https://github.com/H-HChen/map2gazebo.git 
 cd ..
 catkin_make
 ```
@@ -79,7 +79,7 @@ catkin_make
 After you launch SLAM applicatoin and make sure "/map" topic is published.
 ```
 source devel/setup.bash
-roslaunch map2gazebo map2gazebo.launch
+roslaunch map2gazebo map2gazebo.launch export_dir:=/path/to/export_dir
 ```
 Remember to turn off the node when the map is **completely done**
 
