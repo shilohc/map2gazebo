@@ -50,21 +50,43 @@ directory.  (Let me know, or better submit a PR, if you know of a more elegant
 way to do this!)
 
 ## Installation
+NOTE:
 
-Clone the repo and install ROS dependencies with rosdep.  
+trimesh needs the following soft dependencies to export Collada (.dae) files.
+
+Theoretically you can install these with `pip install trimesh[soft]` but this
+failed for me, so I installed the needed ones myself.
 
 Install the python dependencies with pip:
 ```
 pip install --user trimesh
 pip install --user numpy
-```
-
-trimesh needs the following soft dependencies to export Collada (.dae) files.
-Theoretically you can install these with `pip install trimesh[soft]` but this
-failed for me, so I installed the needed ones myself.
-```
 pip install --user pycollada
 pip install --user scipy
 pip install --user networkx
 ```
 
+Git clone map2gazebo and build package
+```
+mkdir -p map2gz_ros1_ws/src
+cd map2gz_ros1_ws/src
+git clone https://github.com/H-HChen/map2gazebo.git export_dir:=/path/to/export_dir
+cd ..
+catkin_make
+```
+
+## Online conversion
+After you launch SLAM applicatoin and make sure "/map" topic is published.
+```
+source devel/setup.bash
+roslaunch map2gazebo map2gazebo.launch
+```
+Remember to turn off the node when the map is **completely done**
+
+## Offline conversion
+If you want to convert an existing map to stl model. 
+
+please modified map_dir and export_dir to directory on your PC.
+```
+python3 src/map2gazebo/src/map2gazebo_offline.py --map_dir /path/to/map/mememan.pgm --export_dir /path/to/export_dir
+```
