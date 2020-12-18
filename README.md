@@ -57,7 +57,7 @@ trimesh needs the following soft dependencies to export Collada (.dae) files.
 Theoretically you can install these with `pip install trimesh[soft]` but this
 failed for me, so I installed the needed ones myself.
 
-Install the python dependencies with pip:
+1. Install the python dependencies with pip:
 ```
 pip install --user trimesh
 pip install --user numpy
@@ -66,7 +66,7 @@ pip install --user scipy
 pip install --user networkx
 ```
 
-Git clone map2gazebo and build package
+2. Git clone map2gazebo and build package
 ```
 mkdir -p map2gz_ros1_ws/src
 cd map2gz_ros1_ws/src
