@@ -53,11 +53,12 @@ way to do this!)
 
 1. Install the python dependencies with pip:
 ```
-pip install --user trimesh
-pip install --user numpy
-pip install --user pycollada
-pip install --user scipy
-pip install --user networkx
+pip3 install --user trimesh
+pip3 install --user numpy
+pip3 install --user pycollada
+pip3 install --user scipy
+pip3 install --user networkx
+pip3 install --user opencv-contrib-python 
 ```
 
 2. Git clone map2gazebo and build package
