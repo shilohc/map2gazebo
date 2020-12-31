@@ -90,5 +90,5 @@ If you want to convert an existing map to stl model.
 
 please modified map_dir and export_dir to directory on your PC.
 ```
-python3 src/map2gazebo/src/map2gazebo_offline.py --map_dir /path/to/map/mememan.pgm --export_dir /path/to/export_dir
+python3 src/map2gazebo/map2gazebo/map2gazebo_offline.py --map_dir /path/to/map/mememan.pgm --export_dir /path/to/export_dir
 ```
