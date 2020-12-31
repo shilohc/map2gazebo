@@ -6,7 +6,7 @@ import yaml
 import argparse
 
 class MapConverter():
-    def __init__(self, map_dir, export_dir, threshold=205, height=2.0):
+    def __init__(self, map_dir, export_dir, threshold=105, height=2.0):
         
         self.threshold = threshold
         self.height = height
@@ -16,6 +16,7 @@ class MapConverter():
     def map_callback(self):
         
         map_array = cv2.imread(self.map_dir)
+        map_array = cv2.flip(map_array, 0)
         print(f'loading map file: {self.map_dir}')
 
         map_array = cv2.cvtColor(map_array, cv2.COLOR_BGR2GRAY)
@@ -27,6 +28,7 @@ class MapConverter():
         # set all -1 (unknown) values to 0 (unoccupied)
         map_array[map_array < 0] = 0
         contours = self.get_occupied_regions(map_array)
+        print('Processing...')
         meshes = [self.contour_to_mesh(c, map_info) for c in contours]
 
         corners = list(np.vstack(contours))
@@ -55,8 +57,11 @@ class MapConverter():
         # all interior obstacles e.g. furniture.
         # https://docs.opencv.org/trunk/d9/d8b/tutorial_py_contours_hierarchy.html
         hierarchy = hierarchy[0]
-        corner_idxs = [i for i in range(len(contours))]
-        return [contours[i] for i in corner_idxs]
+        output_contours = []
+        for idx, contour in enumerate(contours):
+            output_contours.append(contour) if 0 not in contour else print('Remove image boundary')
+            
+        return output_contours
 
     def contour_to_mesh(self, contour, metadata):
         height = np.array([0, 0, self.height])
