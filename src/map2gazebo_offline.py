@@ -4,6 +4,8 @@ import trimesh
 from matplotlib.tri import Triangulation
 import yaml
 import argparse
+import os
+import sys
 
 class MapConverter():
     def __init__(self, map_dir, export_dir, threshold=105, height=2.0):
@@ -18,8 +20,11 @@ class MapConverter():
         map_array = cv2.imread(self.map_dir)
         map_array = cv2.flip(map_array, 0)
         print(f'loading map file: {self.map_dir}')
-
-        map_array = cv2.cvtColor(map_array, cv2.COLOR_BGR2GRAY)
+        try:
+            map_array = cv2.cvtColor(map_array, cv2.COLOR_BGR2GRAY)
+        except cv2.error as err:
+            print(err, "Conversion failed: Invalid image input, please check your file path")    
+            sys.exit()
         info_dir = self.map_dir.replace('pgm','yaml')
 
         with open(info_dir, 'r') as stream:
@@ -111,12 +116,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(argument_default=argparse.SUPPRESS)
     parser.add_argument(
         '--map_dir', type=str, required=True,
-        help='where the map you want to convert'
+        help='File name of the map to convert'
     )
 
     parser.add_argument(
-        '--export_dir', type=str, required=True,
-        help='output directory'
+        '--export_dir', type=str, default=os.path.abspath('.'),
+        help='Mesh output directory'
     )
 
     option = parser.parse_args()
