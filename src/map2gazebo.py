@@ -69,7 +69,7 @@ class MapConverter(object):
         map_array = map_array.astype(np.uint8)
         _, thresh_map = cv2.threshold(
                 map_array, self.threshold, 100, cv2.THRESH_BINARY)
-        image, contours, hierarchy = cv2.findContours(
+        contours, hierarchy = cv2.findContours(
                 thresh_map, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE)
         # Using cv2.RETR_CCOMP classifies external contours at top level of
         # hierarchy and interior contours at second level.  
